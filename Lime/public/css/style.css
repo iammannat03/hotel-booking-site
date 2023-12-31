@@ -1,0 +1,114 @@
+body {
+  background-color: whitesmoke;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+.navbar-brand img {
+  mix-blend-mode: multiply;
+}
+#nav-outer {
+  padding: 23px;
+  z-index: 1000;
+}
+
+#navbar-container-fluid {
+  color: black;
+  background-color: white;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  margin: 0;
+  border-radius: 16px;
+  box-shadow: 5px 5px 24px 6px rgba(0, 0, 0, 0.2);
+}
+
+.container-fluid > .navbar-brand {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  font-size: 22px;
+  font-weight: 600;
+}
+
+.container {
+  flex: 1;
+}
+
+footer {
+  /* margin: 0 30px 0 30px; */
+  padding: 30px;
+  box-shadow: 0 0 30px 20px whitesmoke;
+  background: linear-gradient(whitesmoke 1%, #818181 99%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.foot-social {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+}
+.foot-social > a {
+  text-decoration: none;
+}
+.foot-social > a > .fa-brands {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: black;
+  font-size: 16px;
+  border-radius: 50%;
+  margin: 5px;
+  padding: 0 2px 0 2px;
+}
+.foot-lime {
+  font-size: 12px;
+  font-weight: 650;
+}
+.foot-terms > a {
+  font-size: 12px;
+  font-weight: 650;
+  text-decoration: none;
+  color: black;
+}
+.foot-terms > a:hover {
+  text-decoration: underline;
+}
+
+/* ----- Card ----- */
+#index-card {
+  padding: 9px !important;
+  margin: 20px !important;
+  width: 14 rem !important;
+  border: none !important;
+  border-radius: 10px !important;
+  transition: all 0.5s cubic-bezier(0.19, 1, 0.22, 1);
+  box-shadow: 0px 0px 12px 4px rgb(255, 255, 255) !important;
+}
+#index-card:hover {
+  padding: 9px !important;
+  margin: 20px !important;
+  width: 14 rem !important;
+  border: none !important;
+  border-radius: 10px !important;
+  transform: scale(1.005);
+  box-shadow: 0px 0px 12px 4px rgba(0, 0, 0, 0.2) !important;
+}
+.card-img-top {
+  width: 100% !important;
+  height: 18rem !important;
+  object-fit: cover;
+  padding: 0;
+  border-radius: 10px !important;
+}
+.card-a {
+  text-decoration: none;
+}
