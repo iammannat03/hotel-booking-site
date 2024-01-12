@@ -1,0 +1,32 @@
+<!-- Success Flash -->
+<% if(successMessage.length){ %>
+<div
+  style="position: absolute; margin-left: -10px; z-index: 100"
+  class="flash-msg col-11 me-1 offset-0 alert alert-success alert-dismissible fade show"
+  role="alert"
+>
+  <strong><%=successMessage %></strong>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+
+<!-- Error Flash -->
+<% } %> <% if(errorMessage.length){ %>
+<div
+  style="position: absolute; margin-left: -10px; z-index: 100"
+  class="flash-msg col-11 me-1 offset-0 alert alert-danger alert-dismissible fade show"
+  role="alert"
+>
+  <strong><%=errorMessage %></strong>
+  <button
+    type="button"
+    class="btn-close"
+    data-bs-dismiss="alert"
+    aria-label="Close"
+  ></button>
+</div>
+<% } %>

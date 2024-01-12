@@ -1,0 +1,14 @@
+.root-bg {
+  background: conic-gradient(#335f01, rgb(248, 246, 246));
+}
+
+.root-h1 {
+  text-align: center;
+  color: rgb(2, 2, 2);
+  font-size: 100px;
+}
+
+.root-container {
+  position: relative;
+  top: 160px;
+}
