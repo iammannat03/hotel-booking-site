@@ -1,0 +1,37 @@
+<nav class="navbar navbar-expand-md bg-body-light sticky-top" id="nav-outer">
+  <div class="container-fluid" id="navbar-container-fluid">
+    <a class="navbar-brand" href="/">
+      <img
+        src="https://img.freepik.com/premium-vector/half-lemon-doodle-style-vector-illustration-half-lime-lemon-slice_490811-1639.jpg?w=1480"
+        alt="Logo"
+        height="50"
+        class="d-inline-block align-text-top"
+      />
+      Lime
+    </a>
+    <button
+      class="navbar-toggler"
+      type="button"
+      data-bs-toggle="collapse"
+      data-bs-target="#navbarNavAltMarkup"
+    >
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavAltMarkup">
+      <div class="navbar-nav">
+        <a class="nav-link active" href="/">Home</a>
+        <a class="nav-link" href="/listings">All Listings</a>
+      </div>
+      <div class="navbar-nav ms-auto">
+        <a class="nav-link" href="/listings/new">Add new Listing </a>
+        <a class="nav-link">|</a>
+        <% if(!currUser){ %>
+        <a class="nav-link" href="/login">Login</a>
+        <a class="nav-link" href="/signup">Sign-Up</a>
+        <% } %> <% if(currUser){%>
+        <a class="nav-link" href="/logout">Logout</a>
+        <% } %>
+      </div>
+    </div>
+  </div>
+</nav>
