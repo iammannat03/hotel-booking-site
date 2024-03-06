@@ -9,6 +9,5 @@
 }
 
 .root-container {
-  position: relative;
-  top: 160px;
+  margin-top: 160px;
 }
