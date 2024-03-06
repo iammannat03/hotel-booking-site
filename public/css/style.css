@@ -148,3 +148,9 @@ footer {
 .flash-msg-login {
   margin: 100px !important;
 }
+
+@media (max-width: 767px) {
+  .khadi-pai {
+    display: none;
+  }
+}
