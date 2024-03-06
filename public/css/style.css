@@ -150,7 +150,7 @@ footer {
 }
 
 @media (max-width: 767px) {
-  .khadi-pai {
+  .vertical-separator {
     display: none;
   }
 }
