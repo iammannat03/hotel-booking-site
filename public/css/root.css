@@ -11,3 +11,19 @@
 .root-container {
   margin-top: 160px;
 }
+.bg-login-signup-box_oauth{
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.ouath-button{
+  padding: 8px 16px;
+  color: black;
+  font-size: 18px;
+  border-radius: 16px;
+  font-weight: 600;
+}
+.fa-google{
+  margin-right: 5px;
+}

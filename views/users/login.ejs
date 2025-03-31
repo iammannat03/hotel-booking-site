@@ -52,9 +52,9 @@
             aria-label="Close"
           ></button>
         </div>
+        <% } %> 
 
-        <!-- Error Flash -->
-        <% } %> <% if(errorMessage.length){ %>
+        <% if(errorMessage.length){ %>
         <div
           style="position: absolute; z-index: 100"
           class="flash-msg col-11 me-1 offset-0 alert alert-danger alert-dismissible fade show"
@@ -78,53 +78,13 @@
         >
           <h1 class="mb-4">Login</h1>
 
-          <form
-            action="/login"
-            method="POST"
-            class="needs-validation"
-            novalidate
-          >
-            <div class="mb-2">
-              <label for="username" class="form-label">Username</label>
-
-              <input
-                class="form-control"
-                name="username"
-                id="username"
-                type="text"
-                required
-              />
-              <div class="valid-feedback" style="color: rgb(0, 199, 0)">
-                Looks good!
-              </div>
-              <div class="invalid-feedback" style="color: rgb(255, 125, 125)">
-                Please enter a valid username!
-              </div>
-              <br />
-            </div>
-
-            <div class="mb-2">
-              <label for="password" class="form-label">Password</label>
-
-              <input
-                class="form-control"
-                name="password"
-                id="password"
-                type="password"
-                required
-              />
-              <br />
-            </div>
-            <button class="offset-4 col-4 btn btn-success">Login</button>
-            <br />
-            <a
-              style="position: relative; left: 25px; color: white"
-              href="/signup"
-            >
-              <br />
-              Not a registered user? Create a new account
+          <!-- Google OAuth Button -->
+          <div class="bg-login-signup-box_oauth">
+            <a href="/auth/google" class="ouath-button">
+              <i class="fa-brands fa-google"></i> Sign In with Google
             </a>
-          </form>
+          </div>
+
         </div>
       </div>
     </div>
