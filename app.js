@@ -110,8 +110,8 @@
 
 if (process.env.NODE_ENV != "production") {
   require("dotenv").config();
-  console.log(process.env.GOOGLE_CLIENT_ID)
-  console.log(process.env.GOOGLE_CLIENT_SECRET)
+  console.log(process.env.GOOGLE_CLIENT_ID);
+  console.log(process.env.GOOGLE_CLIENT_SECRET);
 }
 
 const express = require("express");
@@ -130,20 +130,30 @@ const session = require("express-session");
 const MongoStore = require("connect-mongo");
 const flash = require("connect-flash");
 const passport = require("passport");
-const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const GoogleStrategy =
+  require("passport-google-oauth20").Strategy;
 const LocalStrategy = require("passport-local");
 const User = require("./models/user");
+const userControllers = require("./controllers/user");
 
 const MONGO_URL = "mongodb://127.0.0.1:27017/lime";
 
 // const clientID = process.env.GOOGLE_CLIENT_ID;
 // const clientSecret = process.env.GOOGLE_CLIENT_SECRET;
 
-const clientID = process.env.GOOGLE_CLIENT_ID || "fallback-client-id";
-const clientSecret = process.env.GOOGLE_CLIENT_SECRET || "fallback-client-secret";
+const clientID =
+  process.env.GOOGLE_CLIENT_ID || "fallback-client-id";
+const clientSecret =
+  process.env.GOOGLE_CLIENT_SECRET ||
+  "fallback-client-secret";
 
-if (!process.env.GOOGLE_CLIENT_ID || !process.env.GOOGLE_CLIENT_SECRET) {
-  console.error("Missing Google OAuth environment variables!");
+if (
+  !process.env.GOOGLE_CLIENT_ID ||
+  !process.env.GOOGLE_CLIENT_SECRET
+) {
+  console.error(
+    "Missing Google OAuth environment variables!"
+  );
   process.exit(1); // Stop the server if env variables are missing
 }
 
@@ -175,7 +185,10 @@ const store = MongoStore.create({
 });
 
 store.on("error", () => {
-  console.log("-----error in mongo session store-----", err);
+  console.log(
+    "-----error in mongo session store-----",
+    err
+  );
 });
 
 const sessionOptions = {
@@ -207,31 +220,47 @@ app.use((req, res, next) => {
 });
 
 // Google OAuth strategy
-passport.use(new GoogleStrategy({
-    clientID:clientID,
-
-    clientSecret:clientSecret,
-    callbackURL: "http://localhost:8080/auth/google/callback"
-  },
-  function(accessToken, refreshToken, profile, cb) {
-    // Find or create the user based on Google profile
-    User.findOrCreate({ googleId: profile.id }, function (err, user) {
-      return cb(err, user);
-    });
-  }
-));
-
-// Google OAuth routes
-app.get('/auth/google', 
-  passport.authenticate('google', { scope: ['profile', 'email'] })
+passport.use(
+  new GoogleStrategy(
+    {
+      clientID: clientID,
+      clientSecret: clientSecret,
+      callbackURL:
+        "http://localhost:8080/auth/google/callback",
+    },
+    async function (
+      accessToken,
+      refreshToken,
+      profile,
+      done
+    ) {
+      try {
+        const user = await User.findOrCreateGoogleUser(
+          profile
+        );
+        return done(null, user);
+      } catch (err) {
+        return done(err, null);
+      }
+    }
+  )
 );
 
-app.get('/auth/google/callback', 
-  passport.authenticate('google', { failureRedirect: '/login' }),
-  function(req, res) {
-    // Successful authentication, redirect home.
-    res.redirect('/');
-  }
+// Google OAuth routes
+app.get(
+  "/auth/google",
+  passport.authenticate("google", {
+    scope: ["profile", "email"],
+  })
+);
+
+app.get(
+  "/auth/google/callback",
+  passport.authenticate("google", {
+    failureRedirect: "/login",
+    failureFlash: true,
+  }),
+  userControllers.googleAuthCallback
 );
 
 // routes
@@ -253,12 +282,13 @@ app.all("*", (req, res, next) => {
 
 //error handling middlewares
 app.use((err, req, res, next) => {
-  let { statusCode = 500, message = "Something went wrong" } = err;
+  let {
+    statusCode = 500,
+    message = "Something went wrong",
+  } = err;
   res.status(statusCode).render("error.ejs", { message });
 });
 
 app.listen("8080", () => {
   console.log("app is listening on port 8080");
 });
-
-
